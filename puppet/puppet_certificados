@@ -1,0 +1,13 @@
+CERTIFICADOS:
+
+iptables -A INPUT -p tcp --dport 8140 -m state --state NEW -j ACCEPT
+
+
+CLIENTE:
+rm -rf /var/lib/puppet/ssl/*
+puppet cert list -a
+puppet agent -t
+
+MASTER:
+puppet cert -all
+puppet cert sign "nombrenodo"
