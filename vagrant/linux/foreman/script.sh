@@ -17,7 +17,7 @@ setenforce 0
 yum install -y net-tools
 yum install -y git
 yum groupinstall -y "Development Tools"
-yum update -y
+#yum update -y
 
 #HABILITAMOS LOS REPOSITORIOS
 rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
@@ -60,8 +60,8 @@ service	dhcpd restart
 
 #CAMBIAMOS EL PUERTO POR DEFECTO DE PUPPETMASTER EN LOS FICHEROS DE APACHE YA QUE ES QUIEN LO EJECUTARA A PARTIR DE AHORA
 cd /root
-git clone https://github.com/nikoptimus/predator
-mv /root/predator/foreman/puppet/000-default-puppetmaster.conf /etc/httpd/conf.d/000-default-puppetmaster.conf
+git clone https://github.com/nikozl/alien
+mv /root/alien/foreman/puppet/000-default-puppetmaster.conf /etc/httpd/conf.d/000-default-puppetmaster.conf
 
 #PONEMOS NUESTRO FQDN EN EL FICHERO DE CONFIGURACION DE PUPPET
 sed -i "7a server = foremantest.example.local" /etc/puppet/puppet.conf
@@ -88,6 +88,8 @@ service tftp restart
 
 #yum upgrade -y
 #REINICIAMOS EL SISTEMA
-yum upgrade -y 
+yum upgrade -y
+sleep 5 
 echo "Reiniciando sistema..."
+sleep 5
 reboot
