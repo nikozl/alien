@@ -33,33 +33,40 @@ do
    echo "ERROR: La conexion ssh del front ${i} no esta disponible"
  fi
 done
-rm -rf front*.tar.gz tcepatata*
 }
 
 get_hostname() {
-NODE_TMP=${i%.tar.gz}
-NODE=${NODE_TMP/\_/\-}
+  NODE_TMP=${i%.tar.gz}
+  NODE=${NODE_TMP/\_/\-}
+}
 
+detect_tce() {
+  TCE=''
+  if tar -tzf $i home/metro/control.key 2>/dev/null 1>&2; then
+    TCE='parsec'
+  elif tar -tzf $i usr/local/tce/tce 2>/dev/null 1>&2; then
+    TCE='old'
+  fi
 }
 
 extract_file(){
-rm -rf ${BASEDIR}/${NODE}
-mkdir ${BASEDIR}/${NODE}
-file1=${NODE}/home/metro/control.key
-file2=${NODE}/usr/local/tce/tce
-if tar -tzf $i |grep "$file1" >/dev/null 2>&1; then
- tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/control.key
- tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/hosts home/metro/services
- else
-    echo "ERROR: Fallo al descomprimir los ficheros hosts, services y control.key en $i"
-elif tar -tzf $i |grep "$file2" >/dev/null 2>&1; then
- tar --strip=2 -C ${BASEDIR}/${NODE} -xzf ${TMPDIR}/$i etc/inet/hosts etc/inet/services
- tar --transform 's,usr/local/tce/tce,control.key,' -C ${BASEDIR}/${NODE} -xzf $i usr/local/tce/tce
- else
-    echo "ERROR: Fallo al descomprimir hosts y services y/o renombrar el fichero tce a control.key en $i"
-fi
-tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/sistema || echo "ERROR: Fallo al descomprimir el directorio home/metro/sistema en $i"
-rm -rf $i
+  rm -rf ${BASEDIR}/${NODE}
+  mkdir ${BASEDIR}/${NODE}
+  if [[ $TCE == 'parsec' ]]; then
+    tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/control.key
+    tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/hosts home/metro/services
+    tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/sistema
+  elif [[ $TCE == 'old' ]]; then
+    tar --strip=2 -C ${BASEDIR}/${NODE} -xzf ${TMPDIR}/$i etc/inet/hosts etc/inet/services
+    tar --transform 's,usr/local/tce/tce,control.key,' -C ${BASEDIR}/${NODE} -xzf $i usr/local/tce/tce
+    tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/sistema
+  fi
+  rm -rf $i
+}
+
+find_empty_dir() {
+empty=$(find ${BASEDIR}/${NODE} -type d -empty)
+touch $empty/.keep
 }
 
 clean_state_files(){
@@ -87,7 +94,9 @@ main(){
   get_file
   for i in *.tar.gz; do
     get_hostname
+    detect_tce
     extract_file
+    find_empty_dir
     clean_state_files
     git_push
   done
