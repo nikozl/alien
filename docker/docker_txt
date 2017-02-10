@@ -4,7 +4,7 @@ docker build -t "nombre_imagen" .
 
 # Listar los contenedores de nuestro sistema (y el estado en el que se encuentren)
 docker ps
-
+docker ps -a 
 # Parar un contenedor
 docker stop nombre_contenedor
 docker kill nombre_contenedor (mas bruscamente que el anterior)
