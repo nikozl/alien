@@ -3,6 +3,12 @@ Primero creamos nuestro fichero Dokerfile y despues ejecutamos el siguiente coma
 
 docker build -t "nombre_imagen" . <--- El punto es para indicar que el Dokerfile esta en el directorio en el que nos encontramos
 
+# Crear un contenedor
+docker run --name nombre_contenedor -d  nombre_imagen
+-d: es para que lo levante en segundo plano
+-p: mapear puertos (-p 8090:8080) <-- El puerto exterior 8090 va a mapear con el puerto 8080 del contenedor
+-P: expones todos los puertos (de manera random hacia fuera)
+
 # Listar los contenedores de nuestro sistema (y el estado en el que se encuentren)
 docker ps
 docker ps -a 
