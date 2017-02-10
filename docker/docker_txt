@@ -1,7 +1,8 @@
 # Hacer una imagen Docker
-Primero creamos nuestro fichero Dokerfile y despues ejecutamos el siguiente comando en el mismo directorio donde se encuentra nuestro Dokerfile:
+Primero creamos nuestro fichero Dokerfile y despues ejecutamos el siguiente comando en el mismo directorio
+donde se encuentra nuestro Dokerfile:
 
-docker build -t "nombre_imagen" . <--- El punto es para indicar que el Dokerfile esta en el directorio en el que nos encontramos
+docker build -t "nombre_imagen" . <--- El punto es para indicar que el Dokerfile esta en el directorio en el que estamos
 
 # Crear un contenedor
 docker run --name nombre_contenedor -d  nombre_imagen
