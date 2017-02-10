@@ -14,6 +14,7 @@ docker stop $(docker ps -a -q)
 
 # Eliminar un contenedor
 docker rm nombre_contendor
+
 # Eliminar todos los contenedores
 docker rm $(docker ps -a -q)
 
@@ -22,5 +23,6 @@ docker images
 
 # Eliminar una imagen
 docker rmi nombre_imagen 
+
 # Eliminar todas las imágenes
 docker rmi $(docker images -q)
