@@ -1,8 +1,26 @@
+# Hacer una imagen Docker
+Primero creamos nuestro fichero Dokerfile y despues ejecutamos el siguiente comando en el mismo directorio donde se encuentra nuestro Dokerfile
+docker build -t "nombre_imagen" .
+
+# Listar los contenedores de nuestro sistema (y el estado en el que se encuentren)
+docker ps
+
+# Parar un contenedor
+docker stop nombre_contenedor
+docker kill nombre_contenedor (mas bruscamente que el anterior)
+ 
 # Parar todos los contenedores
 docker stop $(docker ps -a -q)
 
+# Eliminar un contenedor
+docker rm nombre_contendor
 # Eliminar todos los contenedores
 docker rm $(docker ps -a -q)
 
+# Lista todas las imagenes
+docker images
+
+# Eliminar una imagen
+docker rmi nombre_imagen 
 # Eliminar todas las imágenes
 docker rmi $(docker images -q)
