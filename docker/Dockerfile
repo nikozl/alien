@@ -8,4 +8,6 @@ RUN wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/je
 RUN rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
 RUN yum install -y jenkins java-1.7.0-openjdk
 
-#CMD ["systemctl start jenkins.service","-D","FOREGROUND"]
+COPY script.sh /
+RUN chmod +x /script.sh
+ENTRYPOINT ["/script.sh"]
