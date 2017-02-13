@@ -15,7 +15,6 @@ apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
 
 #INSTALAMOS Y HABILITAMOS DOCKER
 apt-get update -y
-apt-cache policy docker-engine >> desdedondeinstalamos
 apt-get install -y docker-engine
 systemctl enable docker
 systemctl start docker
