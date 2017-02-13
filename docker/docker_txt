@@ -35,3 +35,13 @@ docker rmi nombre_imagen
 
 # Eliminar todas las imágenes
 docker rmi $(docker images -q)
+
+# Subir imagen a nuestro docker.hub
+Primero nos logeamos en nuestro docker.hub
+ docker login
+
+Creamos un tag referente a la imagen:
+ docker tag nikjenkins nikozl/nikjenkins
+
+Subimos 
+ docker push nikozl/nikjenkins
