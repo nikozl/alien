@@ -11,4 +11,4 @@ jobs:
   - get: git_tests
     trigger: true
   - task: tests
-    file: git_tests/build.yml
+    file: alien/build.yml
