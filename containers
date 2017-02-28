@@ -1,6 +1,6 @@
------------------------------------------------------------------------------
+-----------------------------------
 #### SYSTEMD-NSPAWN CONTAINERS ####
------------------------------------------------------------------------------
+-----------------------------------
 
 -Primero instalamos los paquetes necesarios:
  apt-get install systemd-container debootstrap
@@ -39,9 +39,9 @@
 YA DEBERIAMOS TENER CONEXION A INTERNET.
 
 
-----------------------------------------------
+----------------------
 ## COMANDOS UTILES ##
-----------------------------------------------
+----------------------
 
 machinectl  ---> Ver los contenedores que tenemos corriendo
 machinectl login mycontainer ---> Loguearnos en nuestro contenedor
@@ -49,9 +49,9 @@ machinectl poweroff mycontainer ---> Apagar contenedor
 
 
 
-----------------------------------------
+--------------------
 ## COMO SERVICIO ##
-----------------------------------------
+--------------------
 
 -Configurando nuestro container para que se inicie junto con el sistema operativo anfitrión.
 -En el sistema operativo anfintrión creamos el archivo mycontainer.service
@@ -76,9 +76,9 @@ machinectl poweroff mycontainer ---> Apagar contenedor
 
 
 
----------------------------------------------------------
+-----------------------------
 ## SEGUIR LOG DEL SERVICIO ##
----------------------------------------------------------
+-----------------------------
 
 -Con journalctl podemos seguir el log de nuestro servicio:
  journalctl -u mycontainer.service
