@@ -1,6 +1,7 @@
------------------------------------
-#### SYSTEMD-NSPAWN CONTAINERS ####
------------------------------------
+						-----------------------------------
+						#### SYSTEMD-NSPAWN CONTAINERS ####
+						-----------------------------------
+
 
 -Primero instalamos los paquetes necesarios:
  apt-get install systemd-container debootstrap
