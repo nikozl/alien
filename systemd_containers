@@ -8,19 +8,19 @@
 
 
 -Creamos un directorio para guardar los contenedores que descargaremos:
- En este caso, el directorio es /home/niko/containers
+ En este caso, el directorio es /home/niko/containers/debian
 
 
 -Descargamos contenedor (en este caso debian):
- debootstrap --arch=amd64 sid /home/niko/containers http://ftp.br.debian.org/debian
+ debootstrap --arch=amd64 sid /home/niko/containers/debian http://ftp.br.debian.org/debian
 
 
 -Asignamos una contraseña para el usuario root del contenedor:
- systemd-nspawn --directory=/home/niko/containers passwd
+ systemd-nspawn --directory=/home/niko/containers/debian passwd
 
 
 -Iniciamos el contenedor añadiendo una interfaz virtual:
- systemd-nspawn -bD /home/niko/containers --network-macvlan=eth0 --boot
+ systemd-nspawn -bD /home/niko/containers/debian --network-macvlan=eth0 --boot
  Tambien podemos hacer chroot: sudo chroot /home/niko/containers/debian/ /bin/bash
 
 -Para que la conexion a internet funcione debemos hacer un par de cosas más dentro de nuestro container:
