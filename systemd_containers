@@ -21,6 +21,7 @@
 
 -Iniciamos el contenedor añadiendo una interfaz virtual:
  systemd-nspawn -bD /home/niko/containers --network-macvlan=eth0 --boot
+ Tambien podemos hacer chroot: sudo chroot /home/niko/containers/debian/ /bin/bash
 
 -Para que la conexion a internet funcione debemos hacer un par de cosas más dentro de nuestro container:
  Creamos el fichero de red  (vim /etc/systemd/network/mv-eth0.network)
