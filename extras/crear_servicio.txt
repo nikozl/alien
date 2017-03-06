@@ -23,7 +23,7 @@ Creamos el servicio: Nos desplazamos a /etc/systemd/system ---> Directorio donde
 
 
 Ya tenemos el servicio hecho. Ahora crearemos un timer que se encargue de lanzar dicho servicio:
- Para ello, creamos otro fichero con el mismo nombre que el servicio, pero acabando en .timer (vim tuservicio.timer) con este contenido:
+ Para ello, creamos otro fichero con el mismo nombre que el servicio, pero acabando en .timer (vim tuservicio.timer) :
  
  [Unit]
  Description=timer encargado de tal...
