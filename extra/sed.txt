@@ -1,0 +1,29 @@
+------------------------
+#### SED UTILITIES ####
+------------------------
+Sed es un "editor de ficheros" que nos permitirá hacer un monton de cosas. Podemos utilizar expresiones regulares.
+
+1. AÑADIR TEXTO EN LA LINEA NUMERO "N"
+
+ sed -i "5a server=niko.local" /etc/puppet/puppet.conf ---> Añadiria en la linea 5 "server=niko.local"
+
+
+2. CAMBIAR UNA CADENA DE TEXTO POR OTRA
+
+ sed -i "s,/home/hola/prueba,/home/hola/sed,g" niko.txt ---> En este caso utilizamos las comas como separador en vez de /
+ sed -i 's/hola/HOLA/g' niko.txt ---> Aqui si utilizamos el separador habitual /
+
+ Si quitamos la opcion -i nos mostraria en pantalla como quedaria el cambio, PERO SIN REALIZARLO
+
+
+ALGUNAS EXPRESIONES REGULARES COMUNES
+-------------------------------------
+
+.  --> Significa cualquier caracter
+^  --> Indica el principio de una linea
+$  --> Indica el final de una lina
+\  --> Caracter de escape.
+\< --> Indica el comienzo de una palabra
+\> --> Induica el final de una palabra
+
+Este fichero irá aumentando de tamaño...
