@@ -29,7 +29,7 @@ Ya tenemos el servicio hecho. Ahora crearemos un timer que se encargue de lanzar
  Description=timer encargado de tal...
 
  [Timer]
- OnCalendar=*-*-* 03:00:00 ---> Especificamos una hora/fecha (parecido a crontab)
+ OnCalendar=*-*-* 03:00:00 ---> Especificamos una hora/fecha (parecido a crontab). En este caso todos los dias a las 3
 
  [Install]
  Wantedby=timers.target ---> Es como un grupo al que debemos asociar cada timer. No es el unico, hay mas grupos.
