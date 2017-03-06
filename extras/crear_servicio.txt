@@ -1,0 +1,47 @@
+----------------------
+### CREAR SERVICIO ###
+----------------------
+
+Partiendo de que tenemos un script y queremos automatizar su lanzamiento tendriamos dos opciones:
+ 1. Añadir al crontab una entrada que se encargue de ejecutar nuestro script cada X tiempo
+ 2. Hacer un servicio encargado de lanzar ese script cuando queramos, con la posibilidad de ver su ejecucion
+
+Creamos el script (script.sh) y lo movemos a la ruta /usr/local/bin. Asegurarnos de que tenga permisos de ejecucion.
+ mv script.sh /usr/local/bin
+
+Creamos el servicio: Nos desplazamos a /etc/systemd/system ---> Directorio donde crearemos el servicio y el timer
+
+ Para ello necesitamos crear un fichero (vim tuservicio.service) con el siguiente contenido:
+ 
+ [Unit]
+ Description=Servicio encargado de tal...
+ 
+
+ [Service]
+ Type=oneshot
+ ExecStart=/usr/local/bin/script.sh
+
+
+Ya tenemos el servicio hecho. Ahora crearemos un timer que se encargue de lanzar dicho servicio:
+ Para ello, creamos otro fichero con el mismo nombre que el servicio, pero acabando en .timer (vim tuservicio.timer) con este contenido:
+ 
+ [Unit]
+ Description=timer encargado de tal...
+
+ [Timer]
+ OnCalendar=*-*-* 03:00:00 ---> Especificamos una hora/fecha (parecido a crontab)
+
+ [Install]
+ Wantedby=timers.target ---> Es como un grupo al que debemos asociar cada timer. No es el unico, hay mas grupos.
+
+
+Una vez hecho esto, tenemos todo listo para el funcionamiento:
+ systemctl enable tuservicio.timer
+ systemctl start tuservicio.timer
+ systemctl daemon-reload 
+
+Podemos ver todos los timers:
+ systemctl --all list-timers
+
+Y para hacer un seguimiento de tu servicio:
+  journalctl -u tuservicio.service
