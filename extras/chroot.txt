@@ -4,7 +4,7 @@ Para hacer unas pruebas, podemos empezar montando estas unidades:
 Creamos el directorio de trabajo:
 mkdir /home/niko/linux
 
-mount /dev/sda1 //home/niko/linux
+mount /dev/sda1 /home/niko/linux
 mount -t proc proc /home/niko/linux/proc
 mount -t sysfs sys /home/niko/linux/sys
 mount -o bind /dev /home/niko/linux/dev
