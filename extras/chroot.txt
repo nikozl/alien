@@ -28,8 +28,9 @@ Con update-grub actualizamos el menu de entrada de GRUB2, añadiendo así las po
 Posteriormente reinstalamos GRUB en nuestro disco, ya que ha sido dañado
 En este caso he tomado /dev/sda como el disco en donde tenemos nuestro sistema, esto debéis adaptarlo a vuestro caso.
 
-Nuestro GRUB ya debería estar reparado, asi que debemos salir de chroot, desmontar el sistema de ficheros (IMPORTANTE) y reiniciar 
-para que los cambios surtan efecto. Si se nos olvida desmontar el sistema de ficheros, es posible que al reiniciar 
+Nuestro GRUB ya debería estar reparado, asi que debemos salir de chroot, 
+desmontar el sistema de ficheros (IMPORTANTE) y reiniciar para que los cambios surtan efecto. 
+Si se nos olvida desmontar el sistema de ficheros, es posible que al reiniciar 
 éstos no se desmonten correctamente y por lo tanto algunos cambios no tendrían efecto.
 
 # salimos de chroot
