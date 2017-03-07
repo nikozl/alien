@@ -1,0 +1,42 @@
+Proceso chroot para intentar arreglar sistema roto...
+
+Para hacer unas pruebas, podemos empezar montando estas unidades:
+Creamos el directorio de trabajo:
+mkdir /home/niko/linux
+
+mount /dev/sda1 //home/niko/linux
+mount -t proc proc /home/niko/linux/proc
+mount -t sysfs sys /home/niko/linux/sys
+mount -o bind /dev /home/niko/linux/dev
+
+Con la opción -t le decimos a mount el tipo de “filesystem” que queremos montar.
+Es necesario especificarlo por la naturaleza especial de las carpetas /proc y /sys.
+Con la opción -o especificamos las opciones de mount. La opción bind sirve para “linkear”.
+En UNIX todos los dispositivos hardware son accesibles a través de la carpeta /dev,
+por eso debemos montar nuestro actual /dev en la carpeta donde ahora se encuentra nuestro sistema roto. 
+Al ya estar montada esta carpeta, solo es necesario decirle a mount dónde está originalmente montada.
+
+
+Ahora podemos hacer chroot /home/niko/linux /bin/bash
+
+
+# NOTA: estos comandos se ejecutan una vez dentro de chroot.
+update-grub
+grub-install /dev/sda
+
+Con update-grub actualizamos el menu de entrada de GRUB2, añadiendo así las posibles entradas que falten.
+Posteriormente reinstalamos GRUB en nuestro disco, ya que ha sido dañado
+En este caso he tomado /dev/sda como el disco en donde tenemos nuestro sistema, esto debéis adaptarlo a vuestro caso.
+
+Nuestro GRUB ya debería estar reparado, asi que debemos salir de chroot, desmontar el sistema de ficheros (IMPORTANTE) y reiniciar 
+para que los cambios surtan efecto. Si se nos olvida desmontar el sistema de ficheros, es posible que al reiniciar 
+éstos no se desmonten correctamente y por lo tanto algunos cambios no tendrían efecto.
+
+# salimos de chroot
+exit
+# desmontamos el sistema de ficheros y reiniciamos
+umount /home/niko/linux/dev
+umount /home/niko/linux/sys
+umount /home/niko/linux/proc
+umount /home/niko/linux
+reboot
