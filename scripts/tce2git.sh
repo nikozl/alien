@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -e
-#set -x
+set -x
 
 TMPDIR=$(mktemp -d)
 BASEDIR=${TMPDIR}/pctce-configs/nodes
@@ -42,14 +42,31 @@ get_hostname() {
 
 detect_tce() {
   TCE=''
-  if tar -tzf $i home/metro/control.key 2>/dev/null 1>&2; then
+  if tar -tf $i home/metro/control.key 2>/dev/null 1>&2; then
     TCE='parsec'
-  elif tar -tzf $i usr/local/tce/tce 2>/dev/null 1>&2; then
+  elif tar -tf $i usr/local/tce/tce 2>/dev/null 1>&2; then
     TCE='old'
   fi
 }
 
+
+detect_mbt() {
+
+if [[ $TCE == 'old' ]]; then
+ rm -rf ${BASEDIR}/${NODE}/sistema/V/Mbt
+ mbt=$(tar xfO $i var/spool/cron/crontabs/metro |grep MBT |awk '{print $7}')
+ if [[ ! -z $mbt ]]; then
+  for i in ${mbt[@]};
+  do 
+  mkdir -p ${BASEDIR}/${NODE}/sistema/V/Mbt/$i
+  done
+ fi 
+fi
+}
+
 extract_file(){
+
+if tar -tf $i >/dev/null; then
   rm -rf ${BASEDIR}/${NODE}
   mkdir ${BASEDIR}/${NODE}
   if [[ $TCE == 'parsec' ]]; then
@@ -61,16 +78,24 @@ extract_file(){
     tar --transform 's,usr/local/tce/tce,control.key,' -C ${BASEDIR}/${NODE} -xzf $i usr/local/tce/tce
     tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/sistema
   fi
-  rm -rf $i
+else
+  echo "Error de contenido en fichero tar"
+  continue
+fi
+
 }
 
 find_empty_dir() {
 empty=$(find ${BASEDIR}/${NODE} -type d -empty)
-touch $empty/.keep
+for i in ${empty[@]};
+do
+touch $i/.keep
+done
 }
 
 clean_state_files(){
-find ${BASEDIR}/${NODE} -type f -name cmv.*.bin -o -name jactual.txt -o -name ProgVentilacion_bck| xargs -i rm -f {};
+find ${BASEDIR}/${NODE} -type f -name 'cmv.*.bin' -o -name 'jactual.txt' -o -name 'ProgVentilacion_bck' -o -name '*.gz'| xargs -i rm -f {};
+find ${BASEDIR}/${NODE} -type d -name 'MBT00000' | xargs -i rm -rf {};
 }
 
 clean_temp_files(){
@@ -96,8 +121,9 @@ main(){
     get_hostname
     detect_tce
     extract_file
-    find_empty_dir
+    detect_mbt
     clean_state_files
+    find_empty_dir
     git_push
   done
   clean_temp_files
