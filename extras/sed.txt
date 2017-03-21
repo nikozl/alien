@@ -16,6 +16,12 @@ Sed es un "editor de ficheros" que nos permitirá hacer un monton de cosas. Pode
  Si quitamos la opcion -i nos mostraria en pantalla como quedaria el cambio, PERO SIN REALIZARLO
 
 
+3. ELIMINAR TEXTO DE UN FICHERO
+ 
+ cat niko.txt |sed 's/^..//'  ---> En este caso, elimina los dos primeros caracteres del fichero niko.txt
+
+
+
 ALGUNAS EXPRESIONES REGULARES COMUNES
 -------------------------------------
 
