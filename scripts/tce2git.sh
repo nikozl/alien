@@ -22,9 +22,9 @@ git clone root@16.0.96.20:metro/pctce-configs.git
 
 get_file(){
 ip_host=(16.0.62.30 16.0.62.31 16.0.62.32 16.0.62.33 16.0.62.34 16.0.62.35 16.0.62.36 16.0.62.37 16.0.62.38 16.0.62.39 16.0.62.41)
-for i in ${ip_host[@]};
+for i in "${ip_host[@]}";
 do
- estado=$(printf "GET services\nColumns: state \nFilter: description = SSHD \nFilter: host_address = ${i}\n" | netcat 16.0.74.31 6557)
+ estado=$(printf "GET services\nColumns: state \nFilter: description = SSHD \nFilter: host_address = ${i}\n" | netcat 16.0.74.31 6557 || echo "4")
 
  if [[ $estado == "0" ]] ; then
    echo "INFO: La conexion ssh del front ${i} esta disponible"
@@ -56,7 +56,7 @@ if [[ $TCE == 'old' ]]; then
  rm -rf ${BASEDIR}/${NODE}/sistema/V/Mbt
  mbt=$(tar xfO $i var/spool/cron/crontabs/metro |grep MBT |awk '{print $7}')
  if [[ ! -z $mbt ]]; then
-  for i in ${mbt[@]};
+  for i in "${mbt[@]}";
   do 
   mkdir -p ${BASEDIR}/${NODE}/sistema/V/Mbt/$i
   done
@@ -67,7 +67,7 @@ fi
 extract_file(){
 
 if tar -tf $i >/dev/null; then
-  rm -rf ${BASEDIR}/${NODE}
+  rm -rf "${BASEDIR:?}/${NODE}"
   mkdir ${BASEDIR}/${NODE}
   if [[ $TCE == 'parsec' ]]; then
     tar --strip=2 -C ${BASEDIR}/${NODE} -xzf $i home/metro/control.key
@@ -87,7 +87,7 @@ fi
 
 find_empty_dir() {
 empty=$(find ${BASEDIR}/${NODE} -type d -empty)
-for i in ${empty[@]};
+for i in "${empty[@]}";
 do
 touch $i/.keep
 done
