@@ -10,10 +10,10 @@ echo "hostname,rebuild,diskless,fecha,version"
 for i in "${datos[@]}" ;
 do
 hostname=$i
-rebuild=$(curl http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/rebuild?raw 2>/dev/null)
-diskless=$(curl http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/diskless?raw 2>/dev/null)
-fecha=$(curl http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/fecha?raw 2>/dev/null)
-version=$(curl http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/version?raw 2>/dev/null)
+rebuild=$(curl --silent http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/rebuild?raw)
+diskless=$(curl --silent http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/diskless?raw)
+fecha=$(curl --silent http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/fecha?raw)
+version=$(curl --silent http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/version?raw)
  if [[ $rebuild == "" ]]; then
  rebuild="false"
  fi
