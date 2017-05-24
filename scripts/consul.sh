@@ -12,8 +12,8 @@ cambio=${i/\//\, }
 cambio2=${cambio/\//\, }
 hostname=${cambio2#* }
 hostname2=$(printf '%s\n' "${hostname%%,*}")
-rebuild=$(curl http://16.0.96.20:8500/v1/kv/pctce/${hostname2}/rebuild?raw 2>/dev/null)
-diskless=$(curl http://16.0.96.20:8500/v1/kv/pctce/${hostname2}/diskless?raw 2>/dev/null)
+rebuild=$(curl http://16.0.96.20:8500/v1/kv/pctce/"${hostname2}"/rebuild?raw 2>/dev/null)
+diskless=$(curl http://16.0.96.20:8500/v1/kv/pctce/"${hostname2}"/diskless?raw 2>/dev/null)
  if [[ $rebuild == "" ]]; then
  rebuild="false"
  fi
