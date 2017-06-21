@@ -1,0 +1,14 @@
+#CONSULTAR TODAS LAS KEYS EN CONSUL:
+curl --silent http://16.0.96.20:8500/v1/kv/pctce?keys
+wget -q http://16.0.96.20:8500/v1/kv/pctce?keys
+
+#CONSULTAR ESTADO ESPECIFICO:
+curl --silent http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/rebuild?raw
+wget -q http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/rebuild?raw
+
+#INSERTAR INFORMACION EN CONSUL:
+wget -q --method=PUT --body-data="$(date |tr " " "/")" http://16.0.96.20:8500/v1/kv/pctce/"$(uname -n)"/fechaderebuild -O /dev/null
+
+#BORRAR INFO DE CONSUL:
+wget -q --method=DELETE http://16.0.96.20:8500/v1/kv/pctce/"${hostname}"/rebuild -O /dev/null
+wget -q --method=DELETE http://16.0.96.20:8500/v1/kv/pctce/"$(uname -n)"/rebuild -O /dev/null
