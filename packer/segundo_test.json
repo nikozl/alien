@@ -1,0 +1,50 @@
+{
+  "builders": [
+    {
+      "type": "qemu",
+      "accelerator": "kvm",
+      "headless": false,
+      "qemuargs": [
+        [ "-m", "2048M" ],
+        [ "-smp", "cpus=1,maxcpus=16,cores=4" ]
+      ],
+      "disk_interface": "virtio",
+      "disk_size": 100000,
+      "format": "qcow2",
+      "net_device": "virtio-net",
+ 
+      "iso_url": "http://mirror.raystedman.net/centos/6/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+      "iso_checksum": "af4a1640c0c6f348c6c41f1ea9e192a2",
+      "iso_checksum_type": "md5",
+     
+      "vm_name": "centos7-base",
+      "output_directory": "centos7-base-img",
+ 
+      "http_directory": "datos",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+ 
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
+ 
+      "ssh_username": "root",
+      "ssh_password": "centos6",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+ 
+      "boot_wait": "4s",
+      "boot_command": [
+        "<up><wait><tab><wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/c7-kvm-ks.cfg<enter><wait>"
+      ],
+ 
+      "shutdown_command": "reboot"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scriptdeniko.sh"
+    }
+  ]
+}
