@@ -35,9 +35,8 @@
       "boot_wait": "4s",
       "boot_command": [
         "<up><wait><tab><wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/c7-kvm-ks.cfg<enter><wait>"
-      ],
+      ]
  
-      "shutdown_command": "reboot"
     }
   ],
 
