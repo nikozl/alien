@@ -42,9 +42,23 @@
         ]
 
         
-    }]
+    }],
 
 
+   "provisioners": [
+    {
+    "type": "file",
+    "source": "script_ubuntu.sh",
+    "destination": "/tmp/script_ubuntu.sh"
+    },
+
+    {
+    "type": "shell",
+    "execute_command": "echo 'ubuntu' | sudo -S sh -c '/tmp/script_ubuntu.sh'",
+    "scripts": [
+                "script_ubuntu.sh"
+   
+    ]
+    }
+    ]
 }
-
-
