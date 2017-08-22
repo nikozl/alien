@@ -22,9 +22,9 @@ export JRE_HOME=/opt/jdk1.8.0_131/jre
 export PATH=$PATH:/opt/jdk1.8.0_131/bin:/opt/jdk1.8.0_131/jre/bin
 
 cd /tmp
-wget http://www.us.apache.org/dist/tomcat/tomcat-7/v7.0.79/bin/apache-tomcat-7.0.79.tar.gz
-tar xzf apache-tomcat-7.0.79.tar.gz
-mv apache-tomcat-7.0.79 /usr/local/tomcat7
+wget http://www.us.apache.org/dist/tomcat/tomcat-7/v7.0.81/bin/apache-tomcat-7.0.81.tar.gz ### ---> O la ultima version disponible 
+tar xzf apache-tomcat-7.0.81.tar.gz
+mv apache-tomcat-7.0.81 /usr/local/tomcat7
 
 echo 'all_proxy="http://16.0.96.20:3128"' >> /etc/environment
 echo 'http_proxy="http://16.0.96.20:3128"' >> /etc/environment
