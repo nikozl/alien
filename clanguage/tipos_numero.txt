@@ -1,0 +1,10 @@
+TIPOS PRIMITIVOS ---> Definidos por el compilador
+
+NUMEROS ENTEROS: 1723623 255
+char ----> Generalmente para guardar un caracter
+short ---> Numeros cortos
+int ---> 
+long ---> Numeors muuuuy largos
+NUMEROS REALES(enteros o con coma): 3.1452 9,876
+float ---> Menos precision que double
+double ---> Mas precision
