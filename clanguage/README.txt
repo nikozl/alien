@@ -23,7 +23,7 @@ char ----> Generalmente para guardar un caracter 			1
 short ---> Numeros cortos						
 int ---> Numero entero							2
 long ---> Numeors muuuuy largos						
-NUMEROS REALES(enteros o con coma): 3.1452 9,876
+NUMEROS REALES(enteros o con coma): 3.1452 9.876 (se utiliza . y no ,)
 float ---> Menos precision que double					4
 double ---> Mas precision						8
 void ---> Sin valor							0
