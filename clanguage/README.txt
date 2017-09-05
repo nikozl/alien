@@ -1,3 +1,4 @@
+--------------------------------------------------------------------------------------------
 PARA COMPILAR EN LINUX USAMOS GCC:
 
 1. Ejemplo: 
@@ -16,9 +17,8 @@ Una vez hecho esto, lo podemos ejecutar:
 0: Falso
 --------------------------------------------------------------------------------------------
 
-TIPOS PRIMITIVOS ---> Definidos por el compilador
 
-NUMEROS ENTEROS: 1723623 255					TAMAÑO EN bytes
+NUMEROS ENTEROS:					        TAMAÑO EN bytes
 char ----> Generalmente para guardar un caracter 			1
 short ---> Numeros cortos						
 int ---> Numero entero							2
@@ -28,3 +28,8 @@ float ---> Menos precision que double					4
 double ---> Mas precision						8
 void ---> Sin valor							0
 
+--------------------------------------------------------------------------------------------
+
+int  ---> %d
+float ---> %f o %g para eliminar los ceros sobrantes
+char ---> %c
