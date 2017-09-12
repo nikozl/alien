@@ -1,0 +1,5 @@
+[Files]
+Bind=/srv/gitea:/srv/gitea
+
+[Network]
+VirtualEthernet=false

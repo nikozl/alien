@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+set -x
+
+export http_proxy="http://16.0.96.20:3128"
+export https_proxy="http://16.0.96.20:3128"
+
+chmod +x usr/local/bin/gitea-setup.sh
+wget --no-check-certificate "https://dl.gitea.io/gitea/1.2/gitea-1.2-linux-amd64" -O /usr/local/bin/gitea
+chmod +x /usr/local/bin/gitea
+mkdir /srv/gitea
+adduser --system --group --disabled-login git
+chown -R git:git /srv/gitea
+systemctl enable gitea.service
