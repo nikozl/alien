@@ -11,6 +11,7 @@ Group=git
 WorkingDirectory=/srv/gitea
 ExecStartPre=/usr/local/bin/gitea-setup.sh
 ExecStart=/usr/local/bin/gitea web
+ExecStartPost=/usr/bin/wget -q --post-file=/etc/gitea/consul.json http://127.0.0.1:8500/v1/agent/service/register
 Restart=always
 Environment=GITEA_CUSTOM=/srv/gitea
 Environment=USER=git HOME=/home/git

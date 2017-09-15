@@ -9,7 +9,7 @@ Format=raw_gpt
 Bootable=no
 Hostname=gitea
 XZ=true
-Output=gitea.raw
+Output=gitea.raw.xz
 
 [Packages]
 WithNetwork=yes
@@ -17,4 +17,3 @@ Packages=
         git
 	openssh-client
 	wget
-

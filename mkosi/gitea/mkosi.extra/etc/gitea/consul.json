@@ -1,0 +1,10 @@
+{
+  "NAME": "gitea",
+  "Port": 3000,
+
+  "Check": {
+    "Script": "systemctl status systemd-nspawn@gitea",
+    "Interval": "10s"
+
+  }
+}
