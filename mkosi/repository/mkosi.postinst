@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+set -x
+
+export http_proxy="http://16.0.96.20:3128"
+export https_proxy="http://16.0.96.20:3128"
+
+ln -sf /repo /var/www/repo
+mv /tmp/apache2.conf /etc/apache2/
+
+systemctl enable apache2.service

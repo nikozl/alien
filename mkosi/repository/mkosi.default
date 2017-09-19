@@ -1,0 +1,20 @@
+# Let's build an image that is just good enough to build new mkosi images again
+
+[Distribution]
+Distribution=ubuntu
+Release=zesty
+
+[Output]
+Format=raw_gpt
+Bootable=no
+Hostname=repo
+XZ=true
+Output=repo.raw.xz
+
+[Packages]
+WithNetwork=yes
+Packages=
+	apache2
+        git
+	openssh-client
+	wget
