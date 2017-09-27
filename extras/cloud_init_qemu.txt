@@ -1,0 +1,19 @@
+------------------------------------------------------------------------------------------------
+1. How to add user, password, hostname, etc to .img file::
+
+First we need to create two file: meta-data and user-data
+Next, run this command: genisoimage -o ./cloud-init.iso -V cidata -r -J meta-data user-data
+                                              -
+					      -
+					      -
+				  put here the name you wont
+
+------------------------------------------------------------------------------------------------
+
+Resize .img file::
+sudo qemu-img resize file.img +10G
+
+------------------------------------------------------------------------------------------------
+Up virtual machine with kvm-qemu::
+
+kvm -m 1024    -smp 2 -cdrom /home/niko/artful/cloud-init.iso  -device e1000,netdev=user.0    -netdev user,id=user.0,hostfwd=tcp::5555-:22    -drive file=/home/niko/artful/artful-server-cloudimg-amd64.img,if=virtio,cache=writeback,index=0
