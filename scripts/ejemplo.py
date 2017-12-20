@@ -1,6 +1,5 @@
 import random
 import os
-
 os.system('clear')
 
 saldo = int(input("Introduzca su saldo: "))

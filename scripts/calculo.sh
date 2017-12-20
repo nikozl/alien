@@ -11,7 +11,6 @@ echo "Espere un segundo"
 sleep 1
 
 clear screen
-
 echo "Menu"
 echo "===="
 echo
@@ -37,5 +36,3 @@ let d=$n1/$n2
 echo "La División es: $d";;
 *) echo "Opción fuera de rango"
 esac
-
-
