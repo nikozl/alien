@@ -9,8 +9,9 @@ pygame.display.set_caption("Random")
 mi_imagen = pygame.image.load("/home/niko/Desktop/Ovni.png")
 posX= randint(10,300)
 posY= randint(10,200)
-
+color= (255,255,255)
 print (posX,posY)
+ventana.fill(color)
 ventana.blit(mi_imagen,(posX,posY))
 
 while True:
