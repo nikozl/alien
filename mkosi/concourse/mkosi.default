@@ -1,0 +1,20 @@
+
+[Distribution]
+Distribution=ubuntu
+Release=artful
+
+[Output]
+Format=raw_gpt
+Bootable=no
+Hostname=concourse
+Output=concourse.raw
+
+[Packages]
+WithNetwork=yes
+Packages=
+        openssh-client
+        wget
+	iproute2
+
+[Partitions]
+RootSize=3G

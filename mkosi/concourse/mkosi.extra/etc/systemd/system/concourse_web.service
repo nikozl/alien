@@ -1,0 +1,22 @@
+[Unit]
+Description=Concourse CI Web
+After=postgres.service
+ 
+[Service]
+ExecStart=/usr/local/bin/concourse web \
+               --basic-auth-username concourse \
+               --basic-auth-password changeme  \
+               --session-signing-key /etc/concourse/session_signing_key \
+               --tsa-host-key /etc/concourse/host_key \
+               --tsa-authorized-keys /etc/concourse/authorized_worker_keys \
+               --external-url "http://127.0.0.1:8080" \
+               --postgres-data-source 'postgres:///concourse?host=/var/run/postgresql'
+ 
+User=concourse
+Group=concourse
+ 
+Type=simple
+Restart=on-failure
+ 
+[Install]
+WantedBy=multi-user.target

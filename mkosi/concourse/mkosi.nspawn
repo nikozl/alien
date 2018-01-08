@@ -1,0 +1,5 @@
+[Files]
+Bind=/srv/concourse:/srv/concourse
+
+[Network]
+VirtualEthernet=false
