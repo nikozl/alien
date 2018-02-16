@@ -18,14 +18,8 @@ docker ps -a
 docker stop nombre_contenedor
 docker kill nombre_contenedor (mas bruscamente que el anterior)
  
-# Parar todos los contenedores
-docker stop $(docker ps -a -q)
-
 # Eliminar un contenedor
 docker rm nombre_contendor
-
-# Eliminar todos los contenedores
-docker rm $(docker ps -a -q)
 
 # Lista todas las imagenes
 docker images
